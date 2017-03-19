@@ -119,44 +119,48 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _authWithPassword3 = _interopRequireDefault(_authWithPassword2);
 
-	var _authWithCustomToken2 = __webpack_require__(17);
+	var _authAnonymously2 = __webpack_require__(17);
+
+	var _authAnonymously3 = _interopRequireDefault(_authAnonymously2);
+
+	var _authWithCustomToken2 = __webpack_require__(18);
 
 	var _authWithCustomToken3 = _interopRequireDefault(_authWithCustomToken2);
 
-	var _authWithOAuthPopup2 = __webpack_require__(18);
+	var _authWithOAuthPopup2 = __webpack_require__(19);
 
 	var _authWithOAuthPopup3 = _interopRequireDefault(_authWithOAuthPopup2);
 
-	var _getOAuthRedirectResult2 = __webpack_require__(20);
+	var _getOAuthRedirectResult2 = __webpack_require__(21);
 
 	var _getOAuthRedirectResult3 = _interopRequireDefault(_getOAuthRedirectResult2);
 
-	var _authWithOAuthToken2 = __webpack_require__(21);
+	var _authWithOAuthToken2 = __webpack_require__(22);
 
 	var _authWithOAuthToken3 = _interopRequireDefault(_authWithOAuthToken2);
 
-	var _authWithOAuthRedirect2 = __webpack_require__(22);
+	var _authWithOAuthRedirect2 = __webpack_require__(23);
 
 	var _authWithOAuthRedirect3 = _interopRequireDefault(_authWithOAuthRedirect2);
 
-	var _onAuth2 = __webpack_require__(23);
+	var _onAuth2 = __webpack_require__(24);
 
 	var _onAuth3 = _interopRequireDefault(_onAuth2);
 
-	var _unauth2 = __webpack_require__(24);
+	var _unauth2 = __webpack_require__(25);
 
 	var _unauth3 = _interopRequireDefault(_unauth2);
 
-	var _getAuth2 = __webpack_require__(25);
+	var _getAuth2 = __webpack_require__(26);
 
 	var _getAuth3 = _interopRequireDefault(_getAuth2);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	//database
+	//auth
 
 
-	//helpers
+	//user
 	module.exports = function () {
 
 	  var apps = {};
@@ -232,6 +236,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	        authWithPassword: function authWithPassword(credentials, fn) {
 	          return (0, _authWithPassword3.default)(credentials, fn, this.auth(this.initializedApp));
 	        },
+	        authAnonymously: function authAnonymously(fn) {
+	          return (0, _authAnonymously3.default)(fn, this.auth(this.initializedApp));
+	        },
 	        authWithCustomToken: function authWithCustomToken(token, fn) {
 	          return (0, _authWithCustomToken3.default)(token, fn, this.auth(this.initializedApp));
 	        },
@@ -295,10 +302,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  };
 	}();
 
-	//auth
+	//database
 
 
-	//user
+	//helpers
 
 /***/ },
 /* 2 */
@@ -958,6 +965,24 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+	exports.default = _authAnonymously;
+	function _authAnonymously(fn, auth) {
+	  return auth.signInAnonymously().then(function (authData) {
+	    return fn(null, authData);
+	  }).catch(function (err) {
+	    return fn(err);
+	  });
+	}
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
 	exports.default = _authWithCustomToken;
 	function _authWithCustomToken(token, fn, auth) {
 	  return auth.signInWithCustomToken(token).then(function (user) {
@@ -968,7 +993,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -978,7 +1003,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.default = _authWithOAuthPopup;
 
-	var _getAuthProvider2 = __webpack_require__(19);
+	var _getAuthProvider2 = __webpack_require__(20);
 
 	var _getAuthProvider3 = _interopRequireDefault(_getAuthProvider2);
 
@@ -995,7 +1020,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1058,7 +1083,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1076,7 +1101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1086,7 +1111,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.default = _authWithOAuthToken;
 
-	var _getAuthProvider2 = __webpack_require__(19);
+	var _getAuthProvider2 = __webpack_require__(20);
 
 	var _getAuthProvider3 = _interopRequireDefault(_getAuthProvider2);
 
@@ -1106,7 +1131,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1116,7 +1141,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	});
 	exports.default = _authWithOAuthRedirect;
 
-	var _getAuthProvider2 = __webpack_require__(19);
+	var _getAuthProvider2 = __webpack_require__(20);
 
 	var _getAuthProvider3 = _interopRequireDefault(_getAuthProvider2);
 
@@ -1133,7 +1158,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1147,7 +1172,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1161,7 +1186,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports) {
 
 	"use strict";

@@ -21,6 +21,7 @@ import _createUser from './lib/user/createUser';
 
 //auth
 import _authWithPassword from './lib/auth/authWithPassword';
+import _authAnonymously from './lib/auth/authAnonymously';
 import _authWithCustomToken from './lib/auth/authWithCustomToken';
 import _authWithOAuthPopup from './lib/auth/authWithOAuthPopup';
 import _getOAuthRedirectResult from './lib/auth/getOAuthRedirectResult';
@@ -104,6 +105,9 @@ module.exports = (function(){
         },
         authWithPassword(credentials, fn) {
           return _authWithPassword(credentials, fn, this.auth(this.initializedApp));
+        },
+        authAnonymously(fn) {
+          return _authAnonymously(fn, this.auth(this.initializedApp));
         },
         authWithCustomToken(token, fn) {
           return _authWithCustomToken(token, fn, this.auth(this.initializedApp));

@@ -41,6 +41,18 @@ describe('Auth tests', function(){
 
   });
 
+  describe('authAnonymously()', function(){
+
+    it('succeeds to log in anonymously', function(done){
+      base.authAnonymously(function(error, authData) {
+        expect(error).toBeNull();
+        expect(authData).toBeUndefined();
+        done();
+      });
+    });
+
+  });
+
   describe('onAuth()', function(){
 
     it('Listens to the auth event', function(done){
