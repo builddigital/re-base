@@ -1,5 +1,5 @@
 module.exports = {
-  entry: "./src/rebase.js",
+  entry: ['./src/rebase.js'],
   output: {
     filename: "dist/bundle.js",
     libraryTarget: 'umd'
@@ -17,9 +17,12 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        query: {
+          cacheDirectory: true,
+          presets: ['es2015']
+        }
       }
     ]
   }
 };
-
